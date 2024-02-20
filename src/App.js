@@ -2,6 +2,10 @@ import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Product from './Pages/Product';
+import ShopCategory from './Pages/ShopCategory';
+import Shop from './Pages/Shop';
+import Cart from './Pages/Cart';
+import LoginSignup from './Pages/LoginSignup';
 
 function App() {
   return (
