@@ -3,9 +3,12 @@ import './CartItems.css';
 import { useContext } from 'react';
 import { ShopContext } from '../../Context/ShopContext';
 import remove_icon from '../Assets/cart_cross_icon.png';
+import Checkout from '../Checkout/Checkout';
 
 const CartItems = () => {
     const {getTotalCartAmount,all_product,cartItems,removeFromCart} = useContext(ShopContext);
+      
+
   return (
     <div className='cartitems'>
         <div className="cartitems-format-main">
@@ -21,7 +24,7 @@ const CartItems = () => {
             if(cartItems[e.id]>0)
             {
                 return (
-                    <div>
+                <div key={e.id}>
                     <div className="cartitems-format cartitems-format-main">
                        <img src={e.image} alt="" className="carticon-product-icon" />
                        <p>{e.name}</p>
