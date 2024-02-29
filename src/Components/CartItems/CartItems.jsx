@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import './CartItems.css';
 import { useContext } from 'react';
 import { ShopContext } from '../../Context/ShopContext';
@@ -7,15 +7,13 @@ import Checkout from '../Checkout/Checkout';
 
 const CartItems = () => {
     const {getTotalCartAmount,all_product,cartItems,removeFromCart} = useContext(ShopContext);
-    const [showCheckout, setShowCheckout] = useState(false);
+    const checkoutRef = useRef(null);
 
-    const handleProceedToCheckout = () => {
-        setShowCheckout(true);        
-    }
-
-    const handleCloseCheckout = () => {
-        setShowCheckout(false);
-    }
+    const scrollToCheckout = () => {
+        if (checkoutRef.current) {
+            checkoutRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
   return (
     <div className='cartitems'>
@@ -66,8 +64,9 @@ const CartItems = () => {
                         <h3>${getTotalCartAmount()}</h3>
                     </div>
                 </div>
-                <button onClick={handleProceedToCheckout}>PROCEED TO CHECKOUT</button>
+                <button onClick={scrollToCheckout}>PROCEED TO CHECKOUT</button>
             </div>
+            
             <div className="cartitems-promocode">
                 <p>If you have a promo code, Enter it here</p>
                 <div className="cartitems-promobox">
@@ -76,8 +75,9 @@ const CartItems = () => {
                 </div>
             </div>
         </div>
-
-        {showCheckout && <Checkout onClose={handleCloseCheckout} />}
+        <div ref={checkoutRef}>
+                    <Checkout />
+            </div>
     </div>
   );
 }
