@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CartItems.css';
 import { useContext } from 'react';
 import { ShopContext } from '../../Context/ShopContext';
@@ -7,7 +7,15 @@ import Checkout from '../Checkout/Checkout';
 
 const CartItems = () => {
     const {getTotalCartAmount,all_product,cartItems,removeFromCart} = useContext(ShopContext);
-      
+    const [showCheckout, setShowCheckout] = useState(false);
+
+    const handleProceedToCheckout = () => {
+        setShowCheckout(true);        
+    }
+
+    const handleCloseCheckout = () => {
+        setShowCheckout(false);
+    }
 
   return (
     <div className='cartitems'>
@@ -58,7 +66,7 @@ const CartItems = () => {
                         <h3>${getTotalCartAmount()}</h3>
                     </div>
                 </div>
-                <button>PROCEED TO CHECKOUT</button>
+                <button onClick={handleProceedToCheckout}>PROCEED TO CHECKOUT</button>
             </div>
             <div className="cartitems-promocode">
                 <p>If you have a promo code, Enter it here</p>
@@ -68,6 +76,8 @@ const CartItems = () => {
                 </div>
             </div>
         </div>
+
+        {showCheckout && <Checkout onClose={handleCloseCheckout} />}
     </div>
   );
 }
