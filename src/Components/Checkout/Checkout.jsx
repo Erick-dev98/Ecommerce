@@ -42,7 +42,6 @@ const Checkout = ({ onClose }) => {
             <div className="checkout-modal">
                 <div className="checkout-header">
                     <h2>Checkout</h2>
-                    <button className="close-button" onClick={onClose}>Close</button>
                 </div>
                 <div className="checkout-content">
                     {/* Form for collecting user information */}

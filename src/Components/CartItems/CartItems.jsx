@@ -76,8 +76,8 @@ const CartItems = () => {
             </div>
         </div>
         <div ref={checkoutRef}>
-                    <Checkout />
-            </div>
+            <Checkout />
+        </div>
     </div>
   );
 }
