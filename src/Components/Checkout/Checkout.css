@@ -38,13 +38,16 @@ label {
 }
 
 input[type="email"],
+input[type="tel"],
 textarea,
 select {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 15px;
 }
 
 button {
@@ -59,4 +62,13 @@ button {
 
 button:hover {
     background-color: orange;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+    .checkout-modal {
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+    }
 }

@@ -9,6 +9,7 @@ const Checkout = ({ onClose }) => {
     const [formData, setFormData] = useState({
         email: '',
         address: '',
+        phone: '', // Added phone field
         paymentMethod: 'Mpesa', // Default payment method
     });
 
@@ -31,6 +32,7 @@ const Checkout = ({ onClose }) => {
         setFormData({
             email: '',
             address: '',
+            phone: '', // Reset phone field
             paymentMethod: 'Mpesa',
         });
         // Close the checkout modal
@@ -54,6 +56,19 @@ const Checkout = ({ onClose }) => {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="phone">Phone Number</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                value={formData.phone}
+                                onChange={handleChange}
+                                pattern="[0-9]{10}"
+                                maxLength="10"
                                 required
                             />
                         </div>
@@ -83,7 +98,7 @@ const Checkout = ({ onClose }) => {
                         <button type="submit">Place Order</button>
                     </form>
                     {/* Display total amount */}
-                    <p>Total Amount: ${getTotalCartAmount()}</p>
+                    <p><strong>Total Amount: ${getTotalCartAmount()}</strong></p>
                     {/* Add further checkout related information */}
                 </div>
             </div>
