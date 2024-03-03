@@ -23,20 +23,30 @@ const Checkout = ({ onClose }) => {
     };
 
     // Handle submission of checkout form
-    const handleCheckout = (event) => {
+    const handleCheckout = async (event) => {
         event.preventDefault();
-        // Implement your checkout logic here, such as submitting user data, processing payment, etc.
-        // You can access form data from the formData state
-        console.log('Form Data:', formData);
-        // Reset form fields after submission if needed
-        setFormData({
-            email: '',
-            address: '',
-            phone: '', // Reset phone field
-            paymentMethod: 'Mpesa',
-        });
-        // Close the checkout modal
-        onClose();
+
+        try {
+            // Send order details to backend
+            const response = await fetch('/placeorder', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            if (response.ok) {
+                // Order successfully placed
+                console.log('Order placed successfully!');
+                onClose(); // Close the checkout modal
+            } else {
+                // Handle error response
+                console.error('Failed to place order:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
     return (
