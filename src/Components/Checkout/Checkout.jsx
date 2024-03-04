@@ -23,31 +23,41 @@ const Checkout = ({ onClose }) => {
     };
 
     // Handle submission of checkout form
-    const handleCheckout = async (event) => {
-        event.preventDefault();
+    // Handle submission of checkout form
+const handleCheckout = async (event) => {
+    event.preventDefault();
 
-        try {
-            // Send order details to backend
-            const response = await fetch('/placeorder', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
-            
-            if (response.ok) {
-                // Order successfully placed
-                console.log('Order placed successfully!');
-                onClose(); // Close the checkout modal
-            } else {
-                // Handle error response
-                console.error('Failed to place order:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Error:', error);
+    try {
+        // Send order details to backend
+        const response = await fetch('/placeorder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: formData.email,
+                address: formData.address,
+                phone: formData.phone,
+                paymentMethod: formData.paymentMethod,
+                products: [], // Add products data here if needed
+                totalAmount: getTotalCartAmount(), // Assuming this function returns the total amount
+            })
+        });
+        
+        if (response.ok) {
+            // Order successfully placed
+            const responseData = await response.json();
+            console.log('Order placed successfully:', responseData);
+            onClose(); // Close the checkout modal
+        } else {
+            // Handle error response
+            console.error('Failed to place order:', response.statusText);
         }
-    };
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
+
 
     return (
         <div className="checkout-overlay">
