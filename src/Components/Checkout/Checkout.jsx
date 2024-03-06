@@ -60,6 +60,7 @@ const Checkout = ({ onClose }) => {
                 onClose(); // Close the checkout modal
     
                 // Clear the form after successful submission
+                console.log('Clearing form data...');
                 setFormData({
                     email: '',
                     address: '',
@@ -81,7 +82,6 @@ const Checkout = ({ onClose }) => {
             setSubmittingOrder(false);
         }
     };
-    
     
     
     return (
