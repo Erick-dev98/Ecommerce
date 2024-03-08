@@ -1,0 +1,49 @@
+.pay-on-delivery-container {
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .pay-on-delivery-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .pay-on-delivery-header h2 {
+    margin: 0;
+  }
+  
+  .pay-on-delivery-content .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .pay-on-delivery-content .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .pay-on-delivery-content .form-group input[type="text"],
+  .pay-on-delivery-content .form-group input[type="tel"],
+  .pay-on-delivery-content .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .pay-on-delivery-content .form-group button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .pay-on-delivery-content .form-group button:hover {
+    background-color: #0056b3;
+  }
+  
